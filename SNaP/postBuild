@@ -1,0 +1,4 @@
+#!/bin/bash
+pip install -r jupyter-requirements.txt
+conda install -c conda-forge nodejs
+NODE_OPTIONS=--max_old_space_size=4096 jupyter labextension install jupyterlab-dash # attempt to fix build error per https://github.com/jupyterlab/jupyterlab-github/issues/97

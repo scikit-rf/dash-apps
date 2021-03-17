@@ -1,0 +1,4 @@
+jupyter
+jupyterlab
+jupyterlab-dash
+git+https://github.com/scikit-rf/scikit-rf
