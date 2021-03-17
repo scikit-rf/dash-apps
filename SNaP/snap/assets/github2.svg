@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns="http://www.w3.org/2000/svg"
+        width="80"
+        height="80"
+        viewBox="0 0 250 250"
+        fill="#151513"
+        style="position: absolute; top: 0; right: 0"
+        version="1.1"
+        id="svg3733"
+        sodipodi:docname="github2.svg"
+        inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+    <metadata
+            id="metadata3739">
+        <rdf:RDF>
+            <cc:Work
+                    rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs
+            id="defs3737"/>
+    <sodipodi:namedview
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1"
+            objecttolerance="10"
+            gridtolerance="10"
+            guidetolerance="10"
+            inkscape:pageopacity="0"
+            inkscape:pageshadow="2"
+            inkscape:window-width="1160"
+            inkscape:window-height="940"
+            id="namedview3735"
+            showgrid="false"
+            inkscape:zoom="66.39"
+            inkscape:cx="40"
+            inkscape:cy="41.551242"
+            inkscape:window-x="571"
+            inkscape:window-y="167"
+            inkscape:window-maximized="0"
+            inkscape:current-layer="svg3733"/>
+    <path
+            id="path3727"
+            fill="#000000"
+            d="M0 0l115 115h15l12 27 108 108V0z"/>
+    <path
+            class="octo-arm"
+            d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16"
+            style="-webkit-transform-origin: 130px 106px; transform-origin: 130px 106px"
+            id="path3729"/>
+    <path
+            class="octo-body"
+            d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z"
+            id="path3731"
+            style="fill:#ffffff"/>
+    <path
+            style="fill:#ffffff;stroke-width:0.10483517"
+            d="m 39.930788,34.160127 c -0.839027,-0.667203 -1.497807,-1.448604 -1.849701,-2.193991 -0.295847,-0.626667 -0.331863,-0.803674 -0.324734,-1.59594 0.0068,-0.751546 0.05863,-1.009215 0.331216,-1.645315 0.52981,-1.236373 0.693738,-2.090722 0.624342,-3.253905 -0.05752,-0.964057 0.01607,-1.39089 0.239778,-1.39089 0.209747,0 0.864877,0.687757 1.103283,1.158227 0.455421,0.898731 0.506184,1.918035 0.166817,3.349685 -0.349581,1.474742 0.206071,2.972641 1.454818,3.921825 l 0.539196,0.409847 -0.817146,0.821966 c -0.449429,0.452082 -0.849397,0.821966 -0.888817,0.821966 -0.03942,0 -0.299993,-0.181563 -0.579052,-0.403475 z"
+            id="path3811"
+            inkscape:connector-curvature="0"
+            transform="scale(3.125)"/>
+</svg>

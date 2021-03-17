@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/bin/invoke_app "$@" -t snap \
+    -u anaconda-6 \
+    -C "python @tool/snap/index.py hubzero"

@@ -1,0 +1,9 @@
+matplotlib
+dash_core_components
+plotly
+dash_table
+dash_html_components
+numpy
+dash
+scikit_rf
+Flask-Caching
