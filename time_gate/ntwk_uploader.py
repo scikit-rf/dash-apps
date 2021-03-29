@@ -49,7 +49,9 @@ def update_file(contents, filename, dates):
         dut = rf.Network()
         str_io = io.StringIO(decoded.decode('utf-8'))
         str_io.name = filename # due to bug in skrf
-        dut.read_touchstone(str_io)
+        #dut.read_touchstone(str_io)
+        dut = rf.Network(str_io)
+        #dut = rf.util.get_fid(str_io).name
         return str(dut)
     else:
         return 'upload file'
