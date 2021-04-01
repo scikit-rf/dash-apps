@@ -170,20 +170,28 @@ app.layout = html.Div(className='page',children=[
             ], className='three columns', style={'word-wrap': 'break-word'},
         ),
         
-                html.Div([
- 
         html.Div([
+ 
             html.Div([
-                
-                    html.Div(id='output-plot1'),
+                html.Div([
+
+                    html.Div(id='output-plot-text'),
                     dcc.Loading(id="loading-plot",
-                                children=[html.Div(id='output-plot')],
-                                type="default")
+                        children=[
+                            html.Div(
+                                id='output-plot1',
+                                children=[dcc.Graph(id='graph1', figure={'data': []}, style={'display': 'none'})]
+                        ),
+                            html.Div(
+                                id='output-plot2',
+                                children=[dcc.Graph(id='graph2', figure={'data': []}, style={'display': 'none'})]
+                        ), ],
+                        type="default")
                 ], className="twelve columns"),
             ], className="row"),
             html.Div(id='currently-plotted',
                      style={'display': 'none'})
-        ],id='tabs-content', className='nine columns'),
+        ], id='tabs-content', className='nine columns'),
         ], className='row'
     ),
     html.Div(id='data-uploading1', style={'display': 'none'}),
@@ -204,7 +212,7 @@ class TouchstoneEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.ndarray):
             return obj.tolist()
-        if isinstance(obj, np.complex):
+        if isinstance(obj, complex):
             return np.real(obj), np.imag(obj)  # split into [real, im]
         if isinstance(obj, rf.Frequency):
             return obj.f.tolist()
@@ -427,7 +435,9 @@ def time_gate_plot(_, fig1, fig2, fgate, tgate):
 
 
 @app.callback(
-    [Output('output-plot', "children"),
+    [Output('output-plot-text', "children"),
+     Output('output-plot1', "children"),
+     Output('output-plot2', "children"),
      Output('currently-plotted', 'children')],
     [Input('button', 'n_clicks')],
     #    Input('nsmooth_input', 'n_submit'), Input('nsmooth_input', 'n_blur')],
@@ -447,16 +457,20 @@ def update_graph(_, parm, axes_format, plotted_axes_format, selected_ntwk_rows,
     plotted_axes_format_output = 'None'
     if not selected_ntwk_rows:
         return (html.Div(children=[
-            html.Div(style={'height':'20px'}),
-            '<- Upload a Touchstone File to Start. Then Select Data to Plot',
-            html.Div(style={'height':'150px'}),
-            html.Div(children = ['Originally written by',html.Br(),'Jackson Anderson,',
-                                html.A('ander906@purdue.edu',
-                                    href='mailto:ander906@purdue.edu')],)
-            ],style={'text-align':'center'}),
+                    html.Div(style={'height':'20px'}),
+                    '<- Upload a Touchstone File to Start. Then Select Data to Plot',
+                    html.Div(style={'height':'150px'}),
+                    html.Div(children = ['Originally written by',html.Br(),'Jackson Anderson,',
+                                        html.A('ander906@purdue.edu',
+                                            href='mailto:ander906@purdue.edu')],)
+                ], style={'text-align':'center'}),
+                dcc.Graph(id='graph1', figure={'data': []}, style={'display': 'none'}),
+                dcc.Graph(id='graph2', figure={'data': []}, style={'display': 'none'}),
                 plotted_axes_format_output)
     elif not selected_rows:
         return (html.Div(children='Please Select Ports to Plot.'),
+                dcc.Graph(id='graph1', figure={'data': []}, style={'display': 'none'}),
+                dcc.Graph(id='graph2', figure={'data': []}, style={'display': 'none'}),
                 plotted_axes_format_output)
     else:
 
@@ -470,6 +484,8 @@ def update_graph(_, parm, axes_format, plotted_axes_format, selected_ntwk_rows,
             return (html.Div(children='Data could not be retrieved from cache. '
                                       'Your session may have timed out.'
                                       'Please re-upload your data and try again.'),
+                    dcc.Graph(id='graph1', figure={'data': []}, style={'display': 'none'}),
+                    dcc.Graph(id='graph2', figure={'data': []}, style={'display': 'none'}),
                     plotted_axes_format_output)
         data = {}
         for r in selected_ntwk_rows:
@@ -626,13 +642,14 @@ def update_graph(_, parm, axes_format, plotted_axes_format, selected_ntwk_rows,
                     html.Div('Interactive Smith Chart coming soon...'),
                     html.Img(src="data:image/png;base64,{}".format(encoded))
                 ]),
+                dcc.Graph(id='graph1', figure={'data': []}, style={'display': 'none'}),
+                dcc.Graph(id='graph2', figure={'data': []}, style={'display': 'none'}),
                 plotted_axes_format_output
             )
         return (
-            html.Div([
-                dcc.Graph(id='graph1', figure={'data': traces1, 'layout': layout1[0]}),
-                dcc.Graph(id='graph2', figure={'data': traces2, 'layout': layout2[0]})
-            ]),
+            "",
+            dcc.Graph(id='graph1', figure={'data': traces1, 'layout': layout1[0]}),
+            dcc.Graph(id='graph2', figure={'data': traces2, 'layout': layout2[0]}),
             plotted_axes_format_output
         )
 
