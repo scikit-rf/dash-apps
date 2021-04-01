@@ -19,6 +19,7 @@ import plotly.graph_objs as go
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
+from dash.exceptions import PreventUpdate
 from flask_caching import Cache
 from uuid import uuid4
 
@@ -326,6 +327,8 @@ def update_s_output(list_of_contents, list_of_names, list_of_dates, uuid):
 
         cache.set(uuid, json.dumps(d, cls=TouchstoneEncoder))
         return d2, ''
+    else:
+        raise PreventUpdate
 
 
 @app.callback(Output('plot-options', 'children'),
