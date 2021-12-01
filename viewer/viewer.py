@@ -11,13 +11,13 @@ import json
 import re
 
 import dash
-import dash_table
 import numpy as np
 import matplotlib.pyplot as plt
 import skrf as rf
 import plotly.graph_objs as go
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
+from dash import dash_table
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from flask_caching import Cache
@@ -30,7 +30,7 @@ external_stylesheets = [
     'https://codepen.io/chriddyp/pen/bWLwgP.css'
     ]
 
-app = dash.Dash(__name__,external_stylesheets=external_stylesheets )
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.config.suppress_callback_exceptions = True
 
@@ -251,25 +251,8 @@ def load_touchstone(content_string: str, filename: str) -> rf.Network:
         A skrf Network object holding s-parameter data from the touchstone file.
 
     """
-    class dataIO(io.BytesIO):
-        """Class used to trick skrf into thinking it is reading a file object."""
-        _filename: str
-
-        def __init__(self, data, filename):
-            super(dataIO, self).__init__(data)
-            self.name = filename
-
-        @property
-        def name(self):
-            """Filename of SnP data."""
-            return self._name
-
-        @name.setter
-        def name(self, value):
-            assert isinstance(value, str)
-            self._name = value
-
-    data = dataIO(content_string, filename)
+    data = io.StringIO(content_string.decode('utf-8'))
+    data.name = filename
     d = rf.Network()
     d.read_touchstone(data)
     return d
@@ -322,6 +305,7 @@ def update_s_output(list_of_contents, list_of_names, list_of_dates, uuid):
             content_string.append(cs)
         for c, n in zip(content_string, list_of_names):
             decoded = base64.b64decode(c)
+
             try:
                 data = load_touchstone(decoded, n)
             except Exception as e:
